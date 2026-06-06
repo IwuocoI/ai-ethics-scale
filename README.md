@@ -1,2 +1,39 @@
-# ai-ethics-scale
-人工智能伦理与治理期末作业，依据哈佛大学伯克曼克莱茵中心的研究《Principled Artificial Intelligence: Mapping Consensus in Ethical and Rights-based Approaches to Principles for AI》，通过对卡片的排序看看你对ai伦理的价值判断和国际共识的相似度，差异点，以及你看重的价值准则在现实商业和法律世界中的实际落地情况，为你生成一份简单个人报告。
+# ValueAlign · 价值对齐
+
+个人价值偏好与全球共识碰撞——AI伦理个人报告
+
+## 快速开始
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+浏览器打开 http://localhost:8501
+
+## 项目结构
+
+```
+app.py                  # 主程序（Streamlit）
+requirements.txt        # 依赖
+.streamlit/secrets.toml # API Key（本地，不提交）
+```
+
+## 参考基准
+
+- **Fjeld et al. (2020)** — Principled Artificial Intelligence: Mapping Consensus in Ethical and Rights-Based Approaches to Principles for AI. Harvard Berkman Klein Center.
+  - 分析 36 份国际 AI 伦理准则，提炼 8 项核心原则及各原则出现频率
+- **落地数据** — 基于 EU AI Act、斯坦福 AI Index Report、麦肯锡全球 AI 调研
+
+## 部署到 Streamlit Cloud
+
+1. 推送到 GitHub
+2. 在 [Streamlit Cloud](https://streamlit.io/cloud) 新建 app
+3. 在 Settings → Secrets 添加：
+   ```toml
+   api_key = "你的 DeepSeek API Key"
+   ```
+
+## 许可
+
+MIT
