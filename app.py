@@ -62,7 +62,7 @@ elif st.session_state.step == "intro":
         st.session_state.dragged_ranking = None; st.session_state.step = "pairwise"; st.rerun()
 
 elif st.session_state.step == "pairwise":
-    st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:300px!important;margin:0 auto!important}</style>", unsafe_allow_html=True)
+    st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:170px!important;margin:0 auto!important}</style>", unsafe_allow_html=True)
     s = st.session_state
     if s.cur_new is None and s.to_insert:
         s.cur_new = s.to_insert.pop(0); s.bin_lo = 0; s.bin_hi = len(s.sorted_list)
@@ -73,7 +73,8 @@ elif st.session_state.step == "pairwise":
         a, b = VALUES[s.cur_new], VALUES[s.sorted_list[mid]]
         st.markdown("<div style='text-align:center;margin-bottom:12px'><h2 style='font-size:20px;margin-bottom:4px'>⚖️ 价值比较</h2><p style='font-size:14px;color:#666'>选一个你认为更重要的原则。</p></div>", unsafe_allow_html=True)
         st.progress((len(s.sorted_list)-1)/7, text=f"已排 {len(s.sorted_list)}/8 项")
-        c1,c2 = st.columns(2)
+        st.markdown("<div style='display:flex;justify-content:center;gap:20px'>", unsafe_allow_html=True)
+        c1,c2 = st.columns([3,3])
         with c1:
             if st.button(f"{a['emoji']}\n\n**{a['title']}**\n\n{a['desc']}", key=f"c_{s.total_comparisons}_a", use_container_width=True):
                 s.choices.append({"winner":s.cur_new,"loser":s.sorted_list[mid]}); s.total_comparisons += 1
@@ -86,9 +87,10 @@ elif st.session_state.step == "pairwise":
                 s.bin_hi = mid
                 if s.bin_lo >= s.bin_hi: s.sorted_list.insert(s.bin_lo,s.cur_new); s.cur_new = None
                 st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
 
 elif st.session_state.step == "drag":
-    st.markdown("<style>.stButton>button{height:60px!important;padding:4px 8px!important}.stButton>button p{font-size:13px!important;text-align:center!important}</style>", unsafe_allow_html=True)
+    st.markdown("<style>.stButton>button{height:50px!important;padding:2px 6px!important;min-width:36px!important}.stButton>button p{font-size:12px!important;text-align:center!important}div[data-testid=\"column\"]{min-width:0!important;overflow:visible!important}div[data-testid=\"column\"] p{font-size:12px!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important}</style>", unsafe_allow_html=True)
     st.markdown("<div style='text-align:center;margin-bottom:16px'><h2 style='font-size:20px;margin-bottom:4px'>📋 确认你的排序</h2><p style='font-size:14px;color:#666'>调整优先级，越靠上越重要。</p></div>", unsafe_allow_html=True)
     if st.session_state.dragged_ranking is None: st.session_state.dragged_ranking = list(st.session_state.ranking)
     rk = st.session_state.dragged_ranking
