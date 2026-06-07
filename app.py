@@ -89,44 +89,44 @@ elif st.session_state.step == "intro":
 elif st.session_state.step == "pairwise":
     st.markdown("""
 <style>
-.stButton>button {
-    height: 320px !important;
-    padding: 30px 10px !important;
-    max-width: 300px !important;
-    min-width: 0 !important;
-    margin: 0 auto !important;
-}
-.stButton>button p {
-    font-size: 14px !important;
-    line-height: 1.4 !important;
-    text-align: center !important;
-    white-space: pre-wrap !important;
+@media (min-width: 769px) {
+    .stButton>button {
+        height: 320px !important;
+        padding: 30px 10px !important;
+        margin: 0 auto !important;
+    }
+    .stButton>button p {
+        font-size: 14px !important;
+        line-height: 1.4 !important;
+        text-align: center !important;
+        white-space: pre-wrap !important;
+    }
 }
 
 @media (max-width: 768px) {
     [data-testid="stHorizontalBlock"] {
         flex-wrap: nowrap !important;
-        gap: 8px !important;
+        gap: 4px !important;
         padding: 0 !important;
-        margin: 0 !important;
         width: 100% !important;
-    }
-    [data-testid="column"] {
-        flex: 1 1 0 !important;
-        min-width: 0 !important;
-        width: 50% !important;
-        padding: 0 !important;
-    }
-    [data-testid="column"] .stButton,
-    [data-testid="column"] .stButton>button {
-        width: 150px !important;
-        max-width: 150px !important;
-        height: 240px !important;
-        padding: 12px 6px !important;
-        margin: 0 !important;
         box-sizing: border-box !important;
     }
-    [data-testid="column"] .stButton>button p {
+    [data-testid="column"] {
+        flex: 0 0 48% !important;
+        width: 48% !important;
+        min-width: 0 !important;
+        padding: 0 !important;
+        max-width: 48% !important;
+    }
+    [data-testid="column"] button {
+        height: 240px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        padding: 12px 6px !important;
+        font-size: 11px !important;
+        box-sizing: border-box !important;
+    }
+    [data-testid="column"] button p {
         font-size: 11px !important;
     }
 }
@@ -144,13 +144,13 @@ elif st.session_state.step == "pairwise":
         st.progress((len(s.sorted_list)-1)/7, text=f"已排 {len(s.sorted_list)}/8 项")
         c1,c2 = st.columns(2)
         with c1:
-            if st.button(f"{a['emoji']}\n\n**{a['title']}**\n\n{a['desc']}", key=f"c_{s.total_comparisons}_a"):
+            if st.button(f"{a['emoji']}\n\n**{a['title']}**\n\n{a['desc']}", key=f"c_{s.total_comparisons}_a",use_container_width=True):
                 s.choices.append({"winner":s.cur_new,"loser":s.sorted_list[mid]}); s.total_comparisons += 1
                 s.bin_lo = mid+1
                 if s.bin_lo >= s.bin_hi: s.sorted_list.insert(s.bin_lo,s.cur_new); s.cur_new = None
                 st.rerun()
         with c2:
-            if st.button(f"{b['emoji']}\n\n**{b['title']}**\n\n{b['desc']}", key=f"c_{s.total_comparisons}_b"):
+            if st.button(f"{b['emoji']}\n\n**{b['title']}**\n\n{b['desc']}", key=f"c_{s.total_comparisons}_b",use_container_width=True):
                 s.choices.append({"winner":s.sorted_list[mid],"loser":s.cur_new}); s.total_comparisons += 1
                 s.bin_hi = mid
                 if s.bin_lo >= s.bin_hi: s.sorted_list.insert(s.bin_lo,s.cur_new); s.cur_new = None
