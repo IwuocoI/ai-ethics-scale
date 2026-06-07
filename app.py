@@ -62,7 +62,7 @@ elif st.session_state.step == "intro":
         st.session_state.dragged_ranking = None; st.session_state.step = "pairwise"; st.rerun()
 
 elif st.session_state.step == "pairwise":
-    st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:300px!important;margin:0 auto!important}@media(max-width:640px){.main .block-container{overflow-x:hidden!important}div[data-testid='stHorizontalBlock']{flex-wrap:nowrap!important}.stButton>button{width:150px!important;min-width:150px!important;max-width:150px!important;height:240px!important;padding:14px 4px!important}.stButton>button p{font-size:11px!important}}</style>", unsafe_allow_html=True)
+    st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:300px!important;margin:0 auto!important}@media(max-width:640px){div[data-testid='stHorizontalBlock']{flex-wrap:nowrap!important;column-gap:0!important;justify-content:center!important}div[data-testid='stColumn']{flex:0 0 auto!important;max-width:50%!important;min-width:0!important;padding:0!important}.stButton>button{width:150px!important;min-width:150px!important;max-width:150px!important;height:240px!important;padding:14px 4px!important}.stButton>button p{font-size:11px!important}}</style>", unsafe_allow_html=True)
     s = st.session_state
     if s.cur_new is None and s.to_insert:
         s.cur_new = s.to_insert.pop(0); s.bin_lo = 0; s.bin_hi = len(s.sorted_list)
@@ -88,15 +88,14 @@ elif st.session_state.step == "pairwise":
                 st.rerun()
 
 elif st.session_state.step == "drag":
-    st.markdown("<style>.stButton>button{height:60px!important;padding:4px 8px!important}.stButton>button p{font-size:13px!important;text-align:center!important}</style>", unsafe_allow_html=True)
+    st.markdown("<style>.stButton>button{height:60px!important;padding:4px 8px!important}.stButton>button p{font-size:13px!important;text-align:center!important}@media(max-width:640px){.main .block-container{overflow-x:hidden!important}div[data-testid='stHorizontalBlock']{flex-wrap:nowrap!important;column-gap:0!important}div[data-testid='stColumn']{padding:0 2px!important;margin:0!important;min-width:0!important;word-break:break-word!important}div[data-testid='stColumn']:nth-child(3) .stButton>button,div[data-testid='stColumn']:nth-child(4) .stButton>button{height:30px!important;width:36px!important;min-width:36px!important;max-width:36px!important;padding:0!important}}</style>", unsafe_allow_html=True)
     st.markdown("<div style='text-align:center;margin-bottom:16px'><h2 style='font-size:20px;margin-bottom:4px'>📋 确认你的排序</h2><p style='font-size:14px;color:#666'>调整优先级，越靠上越重要。</p></div>", unsafe_allow_html=True)
     if st.session_state.dragged_ranking is None: st.session_state.dragged_ranking = list(st.session_state.ranking)
     rk = st.session_state.dragged_ranking
     for i, vi in enumerate(rk):
         v = VALUES[vi]
-        cn,ce,ct,cu,cd = st.columns([0.5,0.5,4,1,1])
-        with cn: st.markdown(f"<div style='text-align:center;font-size:20px;font-weight:700;color:#6c63ff;padding-top:8px'>{i+1}</div>", unsafe_allow_html=True)
-        with ce: st.markdown(f"<div style='font-size:28px;padding-top:4px'>{v['emoji']}</div>", unsafe_allow_html=True)
+        ce,ct,cu,cd = st.columns([1,4,1,1])
+        with ce: st.markdown(f"<div style='font-size:28px;line-height:1;padding-top:8px;text-align:center'>{v['emoji']}</div>", unsafe_allow_html=True)
         with ct: st.markdown(f"<div style='font-weight:600;font-size:15px;padding-top:8px'>{v['title']}</div><div style='font-size:11px;color:#888'>{v['desc'][:40]}…</div>", unsafe_allow_html=True)
         with cu:
             if i > 0 and st.button("↑", key=f"u_{i}"):
