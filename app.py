@@ -62,7 +62,7 @@ elif st.session_state.step == "intro":
     with c1: st.markdown("**① 价值比较**\n自适应逐对比较")
     with c2: st.markdown("**② 排序确认**\n调整最终优先级")
     with c3: st.markdown("**③ 生成报告**\n对比共识与落地")
-    st.markdown("<h3 style='font-size:16px;margin:20px 0 8px 0'>📚 核心数据来源</h3>", unsafe_allow_html=True)
+    st.markdown("<h3 style='font-size:16px;margin:0 0 8px 0'>📚 核心数据来源</h3>", unsafe_allow_html=True)
     st.markdown("本项目关于 AI 治理与伦理框架的核心数据，源自哈佛大学伯克曼·克莱恩中心发布的里程碑式白皮书《Principled Artificial Intelligence: Mapping Consensus in Ethical and Rights-based Approaches to Principles for AI》。作为全球 AI 治理领域的奠基性与地缘性文献，该研究通过对全球五大主体（政府、企业、公民社会等）的 36 份权威 AI 原则文件进行全景式深度分析，首次以量化和可视化方式确立了全球在隐私、问责及“公平与非歧视”等 8 大核心伦理主题上的顶层规范共识，其研究结论被联合国、欧盟、OECD 等多方广泛引用，具有极高的国际公信力，为本项目提供了坚实的合规理论支撑与国际标准参照。")
     st.markdown("【官方文献主页】<a href='https://dash.harvard.edu/entities/story/e7033f70-5e9b-484f-af0f-0d8b2fb2cd75' target='_blank'>Harvard DASH - Principled Artificial Intelligence</a>", unsafe_allow_html=True)
     st.markdown("---")
