@@ -89,20 +89,17 @@ elif st.session_state.step == "intro":
 elif st.session_state.step == "pairwise":
     st.markdown("""
 <style>
-@media (min-width: 769px) {
-    .stButton>button {
-        height: 320px !important;
-        padding: 30px 10px !important;
-        margin: 0 auto !important;
-    }
-    .stButton>button p {
-        font-size: 14px !important;
-        line-height: 1.4 !important;
-        text-align: center !important;
-        white-space: pre-wrap !important;
-    }
+.stButton>button {
+    height: 320px !important;
+    padding: 30px 10px !important;
+    margin: 0 auto !important;
 }
-
+.stButton>button p {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    white-space: pre-wrap !important;
+}
 @media (max-width: 768px) {
     [data-testid="stHorizontalBlock"] {
         flex-wrap: nowrap !important;
@@ -117,17 +114,22 @@ elif st.session_state.step == "pairwise":
         min-width: 0 !important;
         padding: 0 !important;
         max-width: 48% !important;
+        overflow: hidden !important;
     }
-    [data-testid="column"] button {
-        height: 240px !important;
+    [data-testid="column"] > div {
+        width: 100% !important;
+    }
+    [data-testid="column"] > div > div > div > button {
+        height: 320px !important;
         width: 100% !important;
         max-width: 100% !important;
+        min-width: 0 !important;
         padding: 12px 6px !important;
-        font-size: 11px !important;
         box-sizing: border-box !important;
     }
-    [data-testid="column"] button p {
+    [data-testid="column"] > div > div > div > button p {
         font-size: 11px !important;
+        white-space: pre-wrap !important;
     }
 }
 </style>
