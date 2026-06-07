@@ -46,7 +46,16 @@ if st.session_state.step == "welcome":
     st.markdown("<div style='text-align:center;font-size:11px;color:#aaa;margin-top:60px'>参考：Fjeld et al. 2020 · 哈佛伯克曼克莱因中心</div>", unsafe_allow_html=True)
 
 elif st.session_state.step == "intro":
-    st.markdown("<h2 style='font-size:20px;margin-bottom:12px'>📋 项目介绍</h2>", unsafe_allow_html=True)
+    ci1, ci2 = st.columns([3, 1])
+    with ci1:
+        st.markdown("<h2 style='font-size:20px;margin-bottom:12px'>📋 项目介绍</h2>", unsafe_allow_html=True)
+    with ci2:
+        if st.button("🚀 开始价值比较", use_container_width=True):
+            order = list(range(8)); random.shuffle(order)
+            st.session_state.sorted_list = [order[0]]; st.session_state.to_insert = order[1:]
+            st.session_state.cur_new = None; st.session_state.bin_lo = 0; st.session_state.bin_hi = 1
+            st.session_state.choices = []; st.session_state.total_comparisons = 0
+            st.session_state.dragged_ranking = None; st.session_state.step = "pairwise"; st.rerun()
     st.markdown("**本项目做什么？**\n\n通过 8 项核心 AI 伦理原则的逐对比较，探索你的个人价值偏好与全球共识之间的差距。")
     st.markdown("**参考基准**\n- **全球共识数据**：Fjeld et al. (2020) 哈佛伯克曼克莱因中心，分析 36 份国际 AI 伦理准则\n- **落地程度数据**：基于 EU AI Act、斯坦福 AI Index Report、麦肯锡全球 AI 调研")
     c1,c2,c3 = st.columns(3)
@@ -58,12 +67,6 @@ elif st.session_state.step == "intro":
     st.markdown("本项目关于 AI 治理与伦理框架的核心数据，源自哈佛大学伯克曼·克莱恩中心发布的里程碑式白皮书《Principled Artificial Intelligence: Mapping Consensus in Ethical and Rights-based Approaches to Principles for AI》。作为全球 AI 治理领域的奠基性与地缘性文献，该研究通过对全球五大主体（政府、企业、公民社会等）的 36 份权威 AI 原则文件进行全景式深度分析，首次以量化和可视化方式确立了全球在隐私、问责及“公平与非歧视”等 8 大核心伦理主题上的顶层规范共识，其研究结论被联合国、欧盟、OECD 等多方广泛引用，具有极高的国际公信力，为本项目提供了坚实的合规理论支撑与国际标准参照。")
     st.markdown("【官方文献主页】<a href='https://dash.harvard.edu/entities/story/e7033f70-5e9b-484f-af0f-0d8b2fb2cd75' target='_blank'>Harvard DASH - Principled Artificial Intelligence</a>", unsafe_allow_html=True)
     st.markdown("---")
-    if st.button("🚀 开始价值比较", use_container_width=True):
-        order = list(range(8)); random.shuffle(order)
-        st.session_state.sorted_list = [order[0]]; st.session_state.to_insert = order[1:]
-        st.session_state.cur_new = None; st.session_state.bin_lo = 0; st.session_state.bin_hi = 1
-        st.session_state.choices = []; st.session_state.total_comparisons = 0
-        st.session_state.dragged_ranking = None; st.session_state.step = "pairwise"; st.rerun()
 
 elif st.session_state.step == "pairwise":
     st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:300px!important;margin:0 auto}@media(min-width:641px){.stButton{display:flex;justify-content:center}div[data-testid='stHorizontalBlock']{justify-content:center!important;gap:24px!important}div[data-testid='stColumn']{flex:0 1 auto!important;width:300px!important;min-width:0!important;padding:0!important}}@media(max-width:640px){div[data-testid='stHorizontalBlock']{flex-wrap:nowrap!important;column-gap:0!important;justify-content:center!important}div[data-testid='stColumn']{flex:0 0 auto!important;max-width:50%!important;min-width:0!important;padding:0!important}.stButton>button{width:150px!important;min-width:150px!important;max-width:150px!important;height:240px!important;padding:14px 4px!important}.stButton>button p{font-size:13px!important}}</style>", unsafe_allow_html=True)
@@ -92,8 +95,21 @@ elif st.session_state.step == "pairwise":
                 st.rerun()
 
 elif st.session_state.step == "drag":
-    st.markdown("<style>.stButton>button{height:60px!important;padding:4px 8px!important}.stButton>button p{font-size:13px!important;text-align:center!important}@media(max-width:640px){.main .block-container{overflow-x:hidden!important}div[data-testid='stHorizontalBlock']{flex-wrap:nowrap!important;column-gap:0!important}div[data-testid='stColumn']{padding:0 2px!important;margin:0!important;min-width:0!important;word-break:break-word!important}div[data-testid='stColumn']:nth-child(3) .stButton>button,div[data-testid='stColumn']:nth-child(4) .stButton>button{height:30px!important;width:36px!important;min-width:36px!important;max-width:36px!important;padding:0!important}}</style>", unsafe_allow_html=True)
-    st.markdown("<div style='text-align:center;margin-bottom:16px'><h2 style='font-size:20px;margin-bottom:4px'>📋 确认你的排序</h2><p style='font-size:14px;color:#666'>调整优先级，越靠上越重要。</p></div>", unsafe_allow_html=True)
+    st.markdown("<style>.stButton>button{height:60px!important;padding:4px 8px!important}.stButton>button p{font-size:13px!important;text-align:center!important}.btns-row{display:flex;gap:8px}@media(max-width:640px){.main .block-container{overflow-x:hidden!important}div[data-testid='stHorizontalBlock']{flex-wrap:nowrap!important;column-gap:0!important}div[data-testid='stColumn']{padding:0 2px!important;margin:0!important;min-width:0!important;word-break:break-word!important}div[data-testid='stColumn']:nth-child(3) .stButton>button,div[data-testid='stColumn']:nth-child(4) .stButton>button{height:30px!important;width:36px!important;min-width:36px!important;max-width:36px!important;padding:0!important}.btns-row{flex-direction:column;align-items:center}.btns-row .stButton{width:100%!important}}</style>", unsafe_allow_html=True)
+    cd1, cd2 = st.columns([2, 1])
+    with cd1:
+        st.markdown("<h2 style='font-size:20px;margin-bottom:4px'>📋 确认你的排序</h2><p style='font-size:14px;color:#666'>调整优先级，越靠上越重要。</p>", unsafe_allow_html=True)
+    with cd2:
+        st.markdown("<div class='btns-row'>", unsafe_allow_html=True)
+        if st.button("← 重新比较", use_container_width=True):
+            order = list(range(8)); random.shuffle(order)
+            st.session_state.sorted_list=[order[0]]; st.session_state.to_insert=order[1:]
+            st.session_state.cur_new=None; st.session_state.bin_lo=0; st.session_state.bin_hi=1
+            st.session_state.choices=[]; st.session_state.total_comparisons=0
+            st.session_state.step="pairwise"; st.rerun()
+        if st.button("📊 生成报告", use_container_width=True):
+            st.session_state.final_ranking=st.session_state.dragged_ranking; st.session_state.step="report"; st.rerun()
+        st.markdown("</div>", unsafe_allow_html=True)
     if st.session_state.dragged_ranking is None: st.session_state.dragged_ranking = list(st.session_state.ranking)
     rk = st.session_state.dragged_ranking
     for i, vi in enumerate(rk):
@@ -107,18 +123,6 @@ elif st.session_state.step == "drag":
         with cd:
             if i < len(rk)-1 and st.button("↓", key=f"d_{i}"):
                 rk[i],rk[i+1]=rk[i+1],rk[i]; st.session_state.dragged_ranking=rk; st.rerun()
-    st.markdown("---")
-    c1,c2 = st.columns(2)
-    with c1:
-        if st.button("← 重新比较", use_container_width=True):
-            order = list(range(8)); random.shuffle(order)
-            st.session_state.sorted_list=[order[0]]; st.session_state.to_insert=order[1:]
-            st.session_state.cur_new=None; st.session_state.bin_lo=0; st.session_state.bin_hi=1
-            st.session_state.choices=[]; st.session_state.total_comparisons=0
-            st.session_state.step="pairwise"; st.rerun()
-    with c2:
-        if st.button("📊 生成报告", use_container_width=True):
-            st.session_state.final_ranking=st.session_state.dragged_ranking; st.session_state.step="report"; st.rerun()
 
 elif st.session_state.step == "report":
     ranking = st.session_state.ranking
