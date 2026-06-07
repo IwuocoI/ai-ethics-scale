@@ -62,7 +62,7 @@ elif st.session_state.step == "intro":
         st.session_state.dragged_ranking = None; st.session_state.step = "pairwise"; st.rerun()
 
 elif st.session_state.step == "pairwise":
-    st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:300px!important;margin:0 auto!important}@media(max-width:640px){.main .block-container{max-width:100vw!important;padding:8px!important}div[data-testid='stHorizontalBlock']{display:flex!important;flex-direction:row!important;flex-wrap:nowrap!important;width:100%!important;justify-content:space-between!important}div[data-testid='column']{flex:0 0 auto!important;width:45%!important;max-width:45%!important;min-width:0!important;padding:0!important;margin:0!important}div[data-testid='column']>div{padding:0!important;margin:0!important}.stButton>button{max-width:none!important;width:100%!important;height:240px!important;padding:14px 4px!important}.stButton>button p{font-size:11px!important}}</style>", unsafe_allow_html=True)
+    st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:300px!important;margin:0 auto!important}@media(max-width:640px){.main .block-container{overflow-x:hidden!important}div[data-testid='stHorizontalBlock']{flex-wrap:nowrap!important}.stButton>button{width:150px!important;min-width:150px!important;max-width:150px!important;height:240px!important;padding:14px 4px!important}.stButton>button p{font-size:11px!important}}</style>", unsafe_allow_html=True)
     s = st.session_state
     if s.cur_new is None and s.to_insert:
         s.cur_new = s.to_insert.pop(0); s.bin_lo = 0; s.bin_hi = len(s.sorted_list)
@@ -75,13 +75,13 @@ elif st.session_state.step == "pairwise":
         st.progress((len(s.sorted_list)-1)/7, text=f"已排 {len(s.sorted_list)}/8 项")
         c1,c2 = st.columns(2)
         with c1:
-            if st.button(f"{a['emoji']}\n\n**{a['title']}**\n\n{a['desc']}", key=f"c_{s.total_comparisons}_a", use_container_width=True):
+            if st.button(f"{a['emoji']}\n\n**{a['title']}**\n\n{a['desc']}", key=f"c_{s.total_comparisons}_a"):
                 s.choices.append({"winner":s.cur_new,"loser":s.sorted_list[mid]}); s.total_comparisons += 1
                 s.bin_lo = mid+1
                 if s.bin_lo >= s.bin_hi: s.sorted_list.insert(s.bin_lo,s.cur_new); s.cur_new = None
                 st.rerun()
         with c2:
-            if st.button(f"{b['emoji']}\n\n**{b['title']}**\n\n{b['desc']}", key=f"c_{s.total_comparisons}_b", use_container_width=True):
+            if st.button(f"{b['emoji']}\n\n**{b['title']}**\n\n{b['desc']}", key=f"c_{s.total_comparisons}_b"):
                 s.choices.append({"winner":s.sorted_list[mid],"loser":s.cur_new}); s.total_comparisons += 1
                 s.bin_hi = mid
                 if s.bin_lo >= s.bin_hi: s.sorted_list.insert(s.bin_lo,s.cur_new); s.cur_new = None
