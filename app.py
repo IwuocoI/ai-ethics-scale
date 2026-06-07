@@ -27,7 +27,6 @@ st.markdown("""
 }
 </style>
 """, unsafe_allow_html=True)
-
 VALUES = [
     {"id":"fairness","emoji":"⚖️","title":"公平与反歧视","desc":"算法不因种族、性别等因素歧视特定群体，需全生命周期偏差检测"},
     {"id":"privacy","emoji":"🔒","title":"隐私","desc":"个人对其数据拥有控制权，防止未经授权的访问或重识别"},
@@ -94,6 +93,7 @@ elif st.session_state.step == "pairwise":
     height: 320px !important;
     padding: 30px 10px !important;
     max-width: 300px !important;
+    min-width: 0 !important;
     margin: 0 auto !important;
 }
 .stButton>button p {
