@@ -89,6 +89,26 @@ elif st.session_state.step == "pairwise":
         max-width: 100vw !important;
         overflow-x: hidden !important;
     }
+    [data-testid="stHorizontalBlock"] {
+        gap: 0px !important;
+        flex-wrap: nowrap !important;
+    }
+    [data-testid="column"] {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        min-width: 0 !important;
+        padding-left: 4px !important;
+        padding-right: 4px !important;
+    }
+    .stButton>button {
+        height: 260px !important;
+        max-width: 170px !important;
+        padding: 16px 6px !important;
+    }
+    .stButton>button p {
+        font-size: 12px !important;
+    }
+}
     /* 两列强制并排且等宽 */
     [data-testid="column"] {
         width: 50% !important;
