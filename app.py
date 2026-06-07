@@ -102,7 +102,7 @@ elif st.session_state.step == "pairwise":
     }
     .stButton>button {
         height: 260px !important;
-        max-width: 170px !important;
+        max-width: 150px !important;
         padding: 16px 6px !important;
     }
     .stButton>button p {
