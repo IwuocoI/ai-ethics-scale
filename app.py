@@ -2,6 +2,32 @@ import streamlit as st, json, random, requests
 
 st.set_page_config(page_title="ValueAlign", layout="centered")
 
+st.markdown("""
+<style>
+@media (max-width: 768px) {
+    /* 锁死页面宽度，禁止横向滚动 */
+    html { overflow-x: hidden !important; }
+    body { overflow-x: hidden !important; width: 100vw !important; }
+    
+    /* Streamlit 最外层容器 */
+    .stApp {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+    section[data-testid="stAppViewContainer"] {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+    .main .block-container {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+        max-width: 100vw !important;
+        box-sizing: border-box !important;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
+
 VALUES = [
     {"id":"fairness","emoji":"⚖️","title":"公平与反歧视","desc":"算法不因种族、性别等因素歧视特定群体，需全生命周期偏差检测"},
     {"id":"privacy","emoji":"🔒","title":"隐私","desc":"个人对其数据拥有控制权，防止未经授权的访问或重识别"},
@@ -78,50 +104,30 @@ elif st.session_state.step == "pairwise":
 }
 
 @media (max-width: 768px) {
-    html, body, .main {
-        overflow-x: hidden !important;
-        max-width: 100vw !important;
-    }
-    .main .block-container {
-        padding-left: 8px !important;
-        padding-right: 8px !important;
-        max-width: 100vw !important;
-        overflow-x: hidden !important;
-        box-sizing: border-box !important;
-    }
     [data-testid="stHorizontalBlock"] {
-        gap: 0px !important;
         flex-wrap: nowrap !important;
+        gap: 8px !important;
+        padding: 0 !important;
+        margin: 0 !important;
         width: 100% !important;
+    }
+    [data-testid="column"] {
+        flex: 1 1 0 !important;
+        min-width: 0 !important;
+        width: 50% !important;
+        padding: 0 !important;
+    }
+    [data-testid="column"] .stButton,
+    [data-testid="column"] .stButton>button {
+        width: 100% !important;
+        max-width: 100% !important;
+        height: 240px !important;
+        padding: 12px 6px !important;
+        margin: 0 !important;
         box-sizing: border-box !important;
     }
-    [data-testid="column"]:first-child {
-        width: 50% !important;
-        flex: 0 0 50% !important;
-        min-width: 0 !important;
-        padding-left: 0px !important;
-        padding-right: 4px !important;
-        display: flex !important;
-        justify-content: flex-start !important;
-    }
-    [data-testid="column"]:last-child {
-        width: 50% !important;
-        flex: 0 0 50% !important;
-        min-width: 0 !important;
-        padding-left: 4px !important;
-        padding-right: 0px !important;
-        display: flex !important;
-        justify-content: flex-end !important;
-    }
-    .stButton>button {
-        height: 260px !important;
-        max-width: 150px !important;
-        width: 150px !important;
-        padding: 16px 6px !important;
-        margin: 0 !important;
-    }
-    .stButton>button p {
-        font-size: 12px !important;
+    [data-testid="column"] .stButton>button p {
+        font-size: 11px !important;
     }
 }
 </style>
