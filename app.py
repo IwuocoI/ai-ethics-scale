@@ -144,13 +144,13 @@ elif st.session_state.step == "pairwise":
         st.progress((len(s.sorted_list)-1)/7, text=f"已排 {len(s.sorted_list)}/8 项")
         c1,c2 = st.columns(2)
         with c1:
-            if st.button(f"{a['emoji']}\n\n**{a['title']}**\n\n{a['desc']}", key=f"c_{s.total_comparisons}_a", use_container_width=True):
+            if st.button(f"{a['emoji']}\n\n**{a['title']}**\n\n{a['desc']}", key=f"c_{s.total_comparisons}_a"):
                 s.choices.append({"winner":s.cur_new,"loser":s.sorted_list[mid]}); s.total_comparisons += 1
                 s.bin_lo = mid+1
                 if s.bin_lo >= s.bin_hi: s.sorted_list.insert(s.bin_lo,s.cur_new); s.cur_new = None
                 st.rerun()
         with c2:
-            if st.button(f"{b['emoji']}\n\n**{b['title']}**\n\n{b['desc']}", key=f"c_{s.total_comparisons}_b", use_container_width=True):
+            if st.button(f"{b['emoji']}\n\n**{b['title']}**\n\n{b['desc']}", key=f"c_{s.total_comparisons}_b"):
                 s.choices.append({"winner":s.sorted_list[mid],"loser":s.cur_new}); s.total_comparisons += 1
                 s.bin_hi = mid
                 if s.bin_lo >= s.bin_hi: s.sorted_list.insert(s.bin_lo,s.cur_new); s.cur_new = None
