@@ -54,6 +54,10 @@ elif st.session_state.step == "intro":
     with c2: st.markdown("**② 排序确认**\n调整最终优先级")
     with c3: st.markdown("**③ 生成报告**\n对比共识与落地")
     st.markdown("---")
+    st.markdown("<h3 style='font-size:16px;margin:20px 0 8px 0'>📚 核心数据来源</h3>", unsafe_allow_html=True)
+    st.markdown("本项目关于 AI 治理与伦理框架的核心数据，源自哈佛大学伯克曼·克莱恩中心发布的里程碑式白皮书《Principled Artificial Intelligence: Mapping Consensus in Ethical and Rights-based Approaches to Principles for AI》。作为全球 AI 治理领域的奠基性与地缘性文献，该研究通过对全球五大主体（政府、企业、公民社会等）的 36 份权威 AI 原则文件进行全景式深度分析，首次以量化和可视化方式确立了全球在隐私、问责及“公平与非歧视”等 8 大核心伦理主题上的顶层规范共识，其研究结论被联合国、欧盟、OECD 等多方广泛引用，具有极高的国际公信力，为本项目提供了坚实的合规理论支撑与国际标准参照。")
+    st.markdown("【官方文献主页】<a href='https://dash.harvard.edu/entities/story/e7033f70-5e9b-484f-af0f-0d8b2fb2cd75' target='_blank'>Harvard DASH - Principled Artificial Intelligence</a>", unsafe_allow_html=True)
+    st.markdown("---")
     if st.button("🚀 开始价值比较", use_container_width=True):
         order = list(range(8)); random.shuffle(order)
         st.session_state.sorted_list = [order[0]]; st.session_state.to_insert = order[1:]
@@ -62,7 +66,7 @@ elif st.session_state.step == "intro":
         st.session_state.dragged_ranking = None; st.session_state.step = "pairwise"; st.rerun()
 
 elif st.session_state.step == "pairwise":
-    st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:300px!important;margin:0 auto}@media(min-width:641px){.stButton{display:flex;justify-content:center}div[data-testid='stHorizontalBlock']{justify-content:center!important;gap:24px!important}div[data-testid='stColumn']{flex:0 1 auto!important;width:300px!important;min-width:0!important;padding:0!important}}@media(max-width:640px){div[data-testid='stHorizontalBlock']{flex-wrap:nowrap!important;column-gap:0!important;justify-content:center!important}div[data-testid='stColumn']{flex:0 0 auto!important;max-width:50%!important;min-width:0!important;padding:0!important}.stButton>button{width:150px!important;min-width:150px!important;max-width:150px!important;height:240px!important;padding:14px 4px!important}.stButton>button p{font-size:11px!important}}</style>", unsafe_allow_html=True)
+    st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:300px!important;margin:0 auto}@media(min-width:641px){.stButton{display:flex;justify-content:center}div[data-testid='stHorizontalBlock']{justify-content:center!important;gap:24px!important}div[data-testid='stColumn']{flex:0 1 auto!important;width:300px!important;min-width:0!important;padding:0!important}}@media(max-width:640px){div[data-testid='stHorizontalBlock']{flex-wrap:nowrap!important;column-gap:0!important;justify-content:center!important}div[data-testid='stColumn']{flex:0 0 auto!important;max-width:50%!important;min-width:0!important;padding:0!important}.stButton>button{width:150px!important;min-width:150px!important;max-width:150px!important;height:240px!important;padding:14px 4px!important}.stButton>button p{font-size:13px!important}}</style>", unsafe_allow_html=True)
     s = st.session_state
     if s.cur_new is None and s.to_insert:
         s.cur_new = s.to_insert.pop(0); s.bin_lo = 0; s.bin_hi = len(s.sorted_list)
