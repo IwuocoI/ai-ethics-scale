@@ -62,12 +62,12 @@ elif st.session_state.step == "intro":
         st.session_state.dragged_ranking = None; st.session_state.step = "pairwise"; st.rerun()
 
 elif st.session_state.step == "pairwise":
-    st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:300px!important;margin:0 auto!important}@media(max-width:640px){div[data-testid='stHorizontalBlock']{flex-wrap:nowrap!important;column-gap:0!important;justify-content:center!important}div[data-testid='stColumn']{flex:0 0 auto!important;max-width:50%!important;min-width:0!important;padding:0!important}.stButton>button{width:150px!important;min-width:150px!important;max-width:150px!important;height:240px!important;padding:14px 4px!important}.stButton>button p{font-size:11px!important}}</style>", unsafe_allow_html=True)
+    st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:300px!important;margin:0 auto}@media(min-width:641px){.stButton{display:flex;justify-content:center}div[data-testid='stHorizontalBlock']{justify-content:center!important;gap:24px!important}div[data-testid='stColumn']{flex:0 1 auto!important;width:300px!important;min-width:0!important;padding:0!important}}@media(max-width:640px){div[data-testid='stHorizontalBlock']{flex-wrap:nowrap!important;column-gap:0!important;justify-content:center!important}div[data-testid='stColumn']{flex:0 0 auto!important;max-width:50%!important;min-width:0!important;padding:0!important}.stButton>button{width:150px!important;min-width:150px!important;max-width:150px!important;height:240px!important;padding:14px 4px!important}.stButton>button p{font-size:11px!important}}</style>", unsafe_allow_html=True)
     s = st.session_state
     if s.cur_new is None and s.to_insert:
         s.cur_new = s.to_insert.pop(0); s.bin_lo = 0; s.bin_hi = len(s.sorted_list)
     if s.cur_new is None and not s.to_insert:
-        st.session_state.ranking = list(s.sorted_list); st.session_state.step = "drag"; st.rerun()
+        st.session_state.ranking = list(reversed(s.sorted_list)); st.session_state.step = "drag"; st.rerun()
     if s.cur_new is not None:
         mid = (s.bin_lo + s.bin_hi) // 2
         a, b = VALUES[s.cur_new], VALUES[s.sorted_list[mid]]
