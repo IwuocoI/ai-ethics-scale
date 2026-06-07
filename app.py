@@ -78,8 +78,7 @@ elif st.session_state.step == "pairwise":
 }
 
 @media (max-width: 768px) {
-    /* 页面不可横向滚动 */
-    html, body {
+    html, body, .main {
         overflow-x: hidden !important;
         max-width: 100vw !important;
     }
@@ -88,38 +87,38 @@ elif st.session_state.step == "pairwise":
         padding-right: 8px !important;
         max-width: 100vw !important;
         overflow-x: hidden !important;
+        box-sizing: border-box !important;
     }
     [data-testid="stHorizontalBlock"] {
         gap: 0px !important;
         flex-wrap: nowrap !important;
+        width: 100% !important;
+        box-sizing: border-box !important;
     }
-    [data-testid="column"] {
+    [data-testid="column"]:first-child {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        min-width: 0 !important;
+        padding-left: 0px !important;
+        padding-right: 4px !important;
+        display: flex !important;
+        justify-content: flex-start !important;
+    }
+    [data-testid="column"]:last-child {
         width: 50% !important;
         flex: 0 0 50% !important;
         min-width: 0 !important;
         padding-left: 4px !important;
-        padding-right: 4px !important;
+        padding-right: 0px !important;
+        display: flex !important;
+        justify-content: flex-end !important;
     }
     .stButton>button {
         height: 260px !important;
         max-width: 150px !important;
+        width: 150px !important;
         padding: 16px 6px !important;
-    }
-    .stButton>button p {
-        font-size: 12px !important;
-    }
-}
-    /* 两列强制并排且等宽 */
-    [data-testid="column"] {
-        width: 50% !important;
-        flex: 0 0 50% !important;
-        min-width: 0 !important;
-    }
-    /* 卡片宽度缩小到170 */
-    .stButton>button {
-        height: 260px !important;
-        max-width: 150px !important;
-        padding: 16px 6px !important;
+        margin: 0 !important;
     }
     .stButton>button p {
         font-size: 12px !important;
