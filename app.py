@@ -62,7 +62,51 @@ elif st.session_state.step == "intro":
         st.session_state.dragged_ranking = None; st.session_state.step = "pairwise"; st.rerun()
 
 elif st.session_state.step == "pairwise":
-    st.markdown("<style>.stButton>button{height:320px!important;padding:30px 10px!important}.stButton>button p{font-size:14px!important;line-height:1.4!important;text-align:center!important;white-space:pre-wrap!important}.stButton>button{max-width:300px!important;margin:0 auto!important}</style>", unsafe_allow_html=True)
+    st.markdown("""
+<style>
+.stButton>button {
+    height: 320px !important;
+    padding: 30px 10px !important;
+    max-width: 300px !important;
+    margin: 0 auto !important;
+}
+.stButton>button p {
+    font-size: 14px !important;
+    line-height: 1.4 !important;
+    text-align: center !important;
+    white-space: pre-wrap !important;
+}
+
+@media (max-width: 768px) {
+    /* 页面不可横向滚动 */
+    html, body {
+        overflow-x: hidden !important;
+        max-width: 100vw !important;
+    }
+    .main .block-container {
+        padding-left: 8px !important;
+        padding-right: 8px !important;
+        max-width: 100vw !important;
+        overflow-x: hidden !important;
+    }
+    /* 两列强制并排且等宽 */
+    [data-testid="column"] {
+        width: 50% !important;
+        flex: 0 0 50% !important;
+        min-width: 0 !important;
+    }
+    /* 卡片宽度缩小到170 */
+    .stButton>button {
+        height: 260px !important;
+        max-width: 170px !important;
+        padding: 16px 6px !important;
+    }
+    .stButton>button p {
+        font-size: 12px !important;
+    }
+}
+</style>
+""", unsafe_allow_html=True)
     s = st.session_state
     if s.cur_new is None and s.to_insert:
         s.cur_new = s.to_insert.pop(0); s.bin_lo = 0; s.bin_hi = len(s.sorted_list)
