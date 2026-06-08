@@ -225,7 +225,7 @@ elif st.session_state.step == "report":
                 ak=st.secrets["api_key"]
                 r=requests.post("https://api.deepseek.com/v1/chat/completions",
                     headers={"Content-Type":"application/json","Authorization":f"Bearer {ak}"},
-                    json={"model":"deepseek-chat","messages":[{"role":"user","content":sp}],"max_tokens":300,"temperature":0.4},
+                    json={"model":"deepseek-v4-flash","messages":[{"role":"user","content":sp}],"max_tokens":300,"temperature":0.4},
                     timeout=30)
                 if r.status_code==200:
                     txt=r.json()["choices"][0]["message"]["content"]
