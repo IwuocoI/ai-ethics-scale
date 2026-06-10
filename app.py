@@ -56,14 +56,14 @@ elif st.session_state.step == "intro":
             st.session_state.cur_new = None; st.session_state.bin_lo = 0; st.session_state.bin_hi = 1
             st.session_state.choices = []; st.session_state.total_comparisons = 0
             st.session_state.dragged_ranking = None; st.session_state.step = "pairwise"; st.rerun()
-    st.markdown("**本项目做什么？**\n\n通过 8 项核心 AI 伦理原则的逐对比较，探索你的个人价值偏好与全球共识之间的差距。")
+    st.markdown("**项目内容**\n\n通过 8 项核心 AI 伦理原则的逐对比较，探索你的个人价值偏好与全球共识之间的差距。")
     st.markdown("**参考基准**\n- **全球共识数据**：Fjeld et al. (2020) 哈佛伯克曼克莱因中心，分析 36 份国际 AI 伦理准则\n- **落地程度数据**：基于 EU AI Act、斯坦福 AI Index Report、麦肯锡全球 AI 调研")
     c1,c2,c3 = st.columns(3)
     with c1: st.markdown("**① 价值比较**\n自适应逐对比较")
     with c2: st.markdown("**② 排序确认**\n调整最终优先级")
     with c3: st.markdown("**③ 生成报告**\n对比共识与落地")
-    st.markdown("<h3 style='font-size:16px;margin:0 0 8px 0'>📚 核心数据来源</h3>", unsafe_allow_html=True)
-    st.markdown("本项目关于 AI 治理与伦理框架的核心数据，源自哈佛大学伯克曼·克莱恩中心发布的里程碑式白皮书《Principled Artificial Intelligence: Mapping Consensus in Ethical and Rights-based Approaches to Principles for AI》。作为全球 AI 治理领域的奠基性与地缘性文献，该研究通过对全球五大主体（政府、企业、公民社会等）的 36 份权威 AI 原则文件进行全景式深度分析，首次以量化和可视化方式确立了全球在隐私、问责及“公平与非歧视”等 8 大核心伦理主题上的顶层规范共识，其研究结论被联合国、欧盟、OECD 等多方广泛引用，具有极高的国际公信力，为本项目提供了坚实的合规理论支撑与国际标准参照。")
+    st.markdown("<h3 style='font-size:16px;margin:0 0 8px 0'>📚 主要数据来源</h3>", unsafe_allow_html=True)
+    st.markdown("本项目关于 AI 治理与伦理框架的核心数据，源自哈佛大学伯克曼·克莱恩中心发布的里程碑式白皮书《Principled Artificial Intelligence: Mapping Consensus in Ethical and Rights-based Approaches to Principles for AI》。作为全球 AI 治理领域的奠基性与地缘性文献，该研究通过对全球五大主体（政府、企业、公民社会等）的 36 份权威 AI 原则文件进行分析，以量化和可视化方式确立了全球在隐私、问责及“公平与非歧视”等 8 大核心伦理主题上的共识，其研究结论被联合国、欧盟、OECD 等多方广泛引用，具有极高的国际公信力。本项目以此研究作为理论支撑和参照基准。")
     st.markdown("【官方文献主页】<a href='https://dash.harvard.edu/entities/story/e7033f70-5e9b-484f-af0f-0d8b2fb2cd75' target='_blank'>Harvard DASH - Principled Artificial Intelligence</a>", unsafe_allow_html=True)
     st.markdown("---")
 
